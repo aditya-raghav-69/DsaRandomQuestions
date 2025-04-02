@@ -2,6 +2,8 @@ package LeetcodeDSA;
 //https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/?envType=study-plan-v2&envId=programming-skills
 
 
+// class does not have main function create it self
+
 class FirstOccuringString {
     public int strStr(String haystack, String needle) {
         if (needle.isEmpty()) return 0; // Edge case
