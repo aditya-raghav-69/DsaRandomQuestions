@@ -6,48 +6,33 @@ package LeetcodeDSA;
 
 class FirstOccuringString {
     public int strStr(String haystack, String needle) {
-        if (needle.isEmpty()) return 0; // Edge case
+        if (needle.isEmpty())
+            return -1;
 
-        int[] lps = computeLPSArray(needle);
-        int i = 0, j = 0;
+        int i = 0;
+        int lenH = haystack.length();
+        int lenN = needle.length();
 
-        while (i < haystack.length()) {
-            if (haystack.charAt(i) == needle.charAt(j)) {
-                i++;
-                j++;
-                if (j == needle.length()) {
-                    return i - j; // Match found
-                }
-            } else {
-                if (j != 0) {
-                    j = lps[j - 1];
-                } else {
-                    i++;
-                }
-            }
+        while (i < (lenH - lenN + 1)) {
+
+            if (haystack.substring(i, i + lenN).equals(needle))
+                return i;
+
+            i++;
+
         }
-        return -1; // No match found
+
+        return -1; // for case if the loop comes here
     }
 
-    private int[] computeLPSArray(String needle) {
-        int[] lps = new int[needle.length()];
-        int length = 0; // Length of the previous longest prefix suffix
-        int i = 1;
 
-        while (i < needle.length()) {
-            if (needle.charAt(i) == needle.charAt(length)) {
-                length++;
-                lps[i] = length;
-                i++;
-            } else {
-                if (length != 0) {
-                    length = lps[length - 1];
-                } else {
-                    lps[i] = 0;
-                    i++;
-                }
-            }
-        }
-        return lps;
+    public static void main(String[] args) {
+        FirstOccuringString fs = new FirstOccuringString();
+
+        int res = fs.strStr("leetcode","leeto");
+        System.out.println(res);
+
+        System.out.println(fs.strStr("sadbutsad","but"));
     }
+
 }
