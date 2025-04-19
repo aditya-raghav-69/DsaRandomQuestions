@@ -16,8 +16,19 @@ class FirstMissingPositve {
         int n = arr.length;
 
         // Step 1: Rearrange elements to their correct positions (x should be at index x-1)
+
         for (int i = 0; i < n; i++) {
             while (arr[i] > 0 && arr[i] <= n && arr[i] != arr[arr[i] - 1]) {
+//                if statement can also be used instead of while try it with if also the commented code is the alternative
+//                { int i = 0;
+//                    while (i < n) {
+//
+//                        if (arr[i] > 0 && arr[i] <= n && arr[i] != arr[arr[i] - 1]) {
+//                            swap(arr, i, arr[i] - 1);
+//                        } else {
+//                            i++;
+//                        }
+//                    }}
                 swap(arr, i, arr[i] - 1);
             }
         }
